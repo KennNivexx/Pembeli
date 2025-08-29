@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Jualanku - Pembeli</title>
+    <link rel="stylesheet" href="/static/css/menu.css" />
+  </head>
+  <body>
+    <header class="topbar" id="topbar">
+      <div class="brand">
+        <img src="/static/images/fallback.png" alt="Logo" class="logo" />
+        <h1 class="title">Jualanku</h1>
+        <button id="theme-toggle">🌙</button>
+      </div>
+      <div class="controls">
+        <button id="sidebar-toggle" class="icon">☰</button>
+        <button id="cart-btn" class="cart-btn">
+          <i class="fas fa-shopping-cart cart-icon"></i>
+          🛒 <span id="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar closed" aria-hidden="true">
+      <div class="sidebar-inner">
+        <h3>Kategori</h3>
+        <ul>
+          <li><button data-cat="all" class="cat-btn active">Semua</button></li>
+          <li><button data-cat="makanan" class="cat-btn">Makanan</button></li>
+          <li><button data-cat="minuman" class="cat-btn">Minuman</button></li>
+          <li><button data-cat="dessert" class="cat-btn">Dessert</button></li>
+        </ul>
+        <hr />
+      </div>
+    </aside>
+
+    <main>
+      <section class="menu-grid" id="menu-grid"></section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="close" id="close-cart">&times;</button>
+        <h2>Keranjang</h2>
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+          <div>Total: Rp <span id="cart-total">0</span></div>
+          <button id="checkout-btn" class="primary">Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout (QRIS) -->
+    <div class="form-row">
+      <div class="form-group">
+        <div id="checkout-modal" class="modal" aria-hidden="true">
+          <div class="modal-content">
+            <button class="close" id="close-checkout">&times;</button>
+            <h2>Checkout</h2>
+            <label>Nama Pembeli</label>
+            <input id="customer-name" type="text" placeholder="Masukkan nama" />
+            <label>Nomor Meja</label>
+            <input
+              id="nomorMeja"
+              type="number"
+              min="1"
+              placeholder="Masukkan nomor meja"
+            />
+            <hr class="divider">
+            <div id="checkout-items"></div>
+            <div>Total: Rp <span id="checkout-total">0</span></div>
+            <div style="text-align: center; margin-top: 12px">
+              <img
+                src="/static/images/qris.jpg"
+                alt="QRIS"
+                style="max-width: 200px"
+              />
+            </div>
+            <hr class="divider">
+            <p style="font-size: 0.9rem; color: #555">
+              Setelah scan & bayar, klik
+              <strong>"Saya sudah bayar"</strong> untuk menyelesaikan transaksi.
+            </p>
+            <button id="confirm-payment-btn" class="primary">
+              Saya sudah bayar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Receipt -->
+    <div id="receipt-modal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="close" id="close-receipt">&times;</button>
+        <h2>Struk</h2>
+        <pre
+          id="receipt-content"
+          style="white-space: pre-wrap; font-family: monospace"
+        ></pre>
+        <button id="finish-btn">OK</button>
+      </div>
+    </div>
+
+    <div class="star" style="top: 27%; left: 10%; animation-delay: 0s"></div>
+    <div class="star" style="top: 44%; left: 50%; animation-delay: 1s"></div>
+    <div class="star" style="top: 69%; left: 80%; animation-delay: 0.5s"></div>
+    <div class="star" style="top: 13%; left: 70%; animation-delay: 1.5s"></div>
+    <div class="star" style="top: 87%; left: 30%; animation-delay: 2s"></div>
+    <div class="star" style="top: 36%; left: 10%; animation-delay: 0s"></div>
+    <div class="star" style="top: 58%; left: 50%; animation-delay: 1s"></div>
+    <div class="star" style="top: 70%; left: 80%; animation-delay: 0.5s"></div>
+    <div class="star" style="top: 24%; left: 70%; animation-delay: 1.5s"></div>
+    <div class="star" style="top: 98%; left: 30%; animation-delay: 2s"></div>
+    <div class="star" style="top: 65%; left: 10%; animation-delay: 0s"></div>
+    <div class="star" style="top: 78%; left: 50%; animation-delay: 1s"></div>
+    <div class="star" style="top: 96%; left: 80%; animation-delay: 0.5s"></div>
+    <div class="star" style="top: 55%; left: 70%; animation-delay: 1.5s"></div>
+    <div class="star" style="top: 39%; left: 30%; animation-delay: 2s"></div>
+
+    <script src="/static/js/menu.js" defer></script>
+  </body>
+</html>
