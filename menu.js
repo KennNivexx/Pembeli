@@ -1,6 +1,9 @@
 // =======================
 // Util
 // =======================
+fetch("flask-production-a120.up.railway.app/api/produk")
+.then(res => res.json())
+.then(data => console.log(data))
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
 // =======================
@@ -333,4 +336,5 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
 
