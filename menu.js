@@ -1,6 +1,39 @@
 // =======================
 // Util
 // =======================
+
+// URL backend di Railway
+const API_URL = "https://flask-production-a120.up.railway.app/menu";
+
+// Ambil data dari backend
+async function getMenu() {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error("Gagal ambil data menu");
+    }
+
+    const data = await response.json();
+
+    // Tampilkan ke HTML
+    const menuList = document.getElementById("menu-list");
+    menuList.innerHTML = "";
+
+    data.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = ${item.nama} - Rp${item.harga};
+      menuList.appendChild(li);
+    });
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Gagal connect ke backend");
+  }
+}
+
+// Panggil fungsi saat halaman dibuka
+document.addEventListener("DOMContentLoaded", getMenu);
+
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
 // =======================
@@ -294,7 +327,7 @@ const topbar = document.getElementById("topbar");
 
 let isDark = true; // default malam
 document.body.classList.add("dark");
-topbar.style.backgroundImage = "url('/static/images/night.gif')";
+topbar.style.backgroundImage = "url('night.gif')";
 themetoggle.textContent = "🌙";
 
 themeToggle.addEventListener("click", () => {
@@ -303,12 +336,12 @@ themeToggle.addEventListener("click", () => {
   if (isDark) {
     document.body.classList.remove("light");
     document.body.classList.add("dark");
-    topbar.style.backgroundImage = "url('/static/images/night.gif')";
+    topbar.style.backgroundImage = "url('night.gif')";
     themetoggle.textContent = "🌙";
   } else {
     document.body.classList.remove("dark");
     document.body.classList.add("light");
-    topbar.style.backgroundImage = "url('/static/images/morning.gif')";
+    topbar.style.backgroundImage = "url('morning.gif')";
     themetoggle.textContent = "🌞";
   }
 });
@@ -333,3 +366,4 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
