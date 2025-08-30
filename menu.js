@@ -74,34 +74,38 @@ catBtns.forEach((b) => {
     renderMenus();
   });
 });
+
 // =======================
 // Load menus
 // =======================
 async function loadMenus() {
-  const res = await fetch("/api/menus");
-  menus = await res.json();
-  renderMenus();
+  try {
+    const res = await fetch(${API_URL}/api/menus);
+    if (!res.ok) throw new Error("Gagal ambil menu");
+    menus = await res.json();
+    renderMenus();
+  } catch (err) {
+    console.error(err);
+    alert("Tidak bisa ambil menu dari server");
+  }
 }
 
-// Ambil data dari backend
+// Ambil data list sederhana
 async function getMenu() {
   try {
-    const response = await fetch(API_URL);
-    if (!response.ok) {
-      throw new Error("Gagal ambil data menu");
-    }
+    const response = await fetch(${API_URL}/api/menus);
+    if (!response.ok) throw new Error("Gagal ambil data menu");
 
     const data = await response.json();
-
-    // Tampilkan ke HTML
     const menuList = document.getElementById("menu-list");
-    menuList.innerHTML = "";
-
-    data.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = `${item.nama} - Rp${item.harga}`;
-      menuList.appendChild(li);
-    });
+    if (menuList) {
+      menuList.innerHTML = "";
+      data.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = ${item.nama} - Rp${item.harga};
+        menuList.appendChild(li);
+      });
+    }
   } catch (error) {
     console.error("Error:", error);
     alert("Gagal connect ke backend");
@@ -154,6 +158,7 @@ function renderMenus() {
         });
       }
       updateBadge();
+      animateCart();
     });
   });
 }
@@ -271,7 +276,7 @@ confirmPayBtn.addEventListener("click", async () => {
     cart: cart.map((i) => ({ id: i.id, qty: i.qty })),
   };
 
-  const res = await fetch("/api/orders", {
+  const res = await fetch(${API_URL}/api/orders, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -286,7 +291,7 @@ confirmPayBtn.addEventListener("click", async () => {
   // Tampilkan struk
   const tgl = new Date().toLocaleString("id-ID");
   const itemsStr = cart
-    .map((i) => `• ${i.name} x${i.qty}  Rp ${rupiah(i.price * i.qty)}`)
+    .map((i) => • ${i.name} x${i.qty}  Rp ${rupiah(i.price * i.qty)})
     .join("\n");
 
   receiptContent.textContent = `JUALANKU
@@ -320,7 +325,10 @@ finishBtn.addEventListener("click", () => close(receiptModal));
     if (e.target === m) close(m);
   });
 });
+
+// =======================
 // Theme toggle + topbar
+// =======================
 const themetoggle = document.getElementById("theme-toggle");
 const topbar = document.getElementById("topbar");
 
@@ -344,6 +352,10 @@ themeToggle.addEventListener("click", () => {
     themetoggle.textContent = "🌞";
   }
 });
+
+// =======================
+// Animasi Cart
+// =======================
 function animateCart() {
   const cartBtn = document.getElementById("cart-btn");
   if (!cartBtn) return;
@@ -353,17 +365,7 @@ function animateCart() {
   cartBtn.classList.add("shake");
 }
 
-// contoh trigger tiap kali nambah item ke keranjang
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("add-to-cart")) {
-    animateCart();
-  }
-});
-
-// kalau kamu udah punya fungsi addToCart, panggil aja animateCart() di situ
 // =======================
 // Init
 // =======================
 loadMenus();
-
-
