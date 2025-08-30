@@ -3,7 +3,7 @@
 // =======================
 
 // URL backend di Railway
-const API_URL = 'https://flask-production-a120.up.railway.app/menu';
+const API_URL = 'https://flask-production-a120.up.railway.app';
 
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
@@ -365,4 +365,5 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
 
