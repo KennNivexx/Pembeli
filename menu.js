@@ -326,7 +326,7 @@ const topbar = document.getElementById("topbar");
 
 let isDark = true; // default malam
 document.body.classList.add("dark");
-topbar.style.backgroundImage = "url('/static/images/night.gif')";
+topbar.style.backgroundImage = "url('night.gif')";
 themetoggle.textContent = "🌙";
 
 themeToggle.addEventListener("click", () => {
@@ -335,12 +335,12 @@ themeToggle.addEventListener("click", () => {
   if (isDark) {
     document.body.classList.remove("light");
     document.body.classList.add("dark");
-    topbar.style.backgroundImage = "url('/static/images/night.gif')";
+    topbar.style.backgroundImage = "url('night.gif')";
     themetoggle.textContent = "🌙";
   } else {
     document.body.classList.remove("dark");
     document.body.classList.add("light");
-    topbar.style.backgroundImage = "url('/static/images/morning.gif')";
+    topbar.style.backgroundImage = "url('morning.gif')";
     themetoggle.textContent = "🌞";
   }
 });
@@ -365,3 +365,4 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
