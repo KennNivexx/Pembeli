@@ -90,9 +90,9 @@ function renderMenus() {
     .map(
       (it) => `
       <div class="menu-item" data-id="${it.id}">
-        <img src="${it.gambar || "/static/images/fallback.png"}" 
+        <img src="${it.gambar || "fallback.png"}" 
              alt="${it.nama}" 
-             onerror="this.src='/static/images/fallback.png'"/>
+             onerror="this.src='fallback.png'"/>
         <h3>${it.nama}</h3>
         <p class="price">Rp ${rupiah(it.harga)}</p>
         <button class="add-to-cart">Tambah</button>
@@ -293,7 +293,7 @@ const topbar = document.getElementById("topbar");
 
 let isDark = true; // default malam
 document.body.classList.add("dark");
-topbar.style.backgroundImage = "url('/static/images/night.gif')";
+topbar.style.backgroundImage = "url('night.gif')";
 themetoggle.textContent = "🌙";
 
 themeToggle.addEventListener("click", () => {
@@ -302,12 +302,12 @@ themeToggle.addEventListener("click", () => {
   if (isDark) {
     document.body.classList.remove("light");
     document.body.classList.add("dark");
-    topbar.style.backgroundImage = "url('/static/images/night.gif')";
+    topbar.style.backgroundImage = "url('night.gif')";
     themetoggle.textContent = "🌙";
   } else {
     document.body.classList.remove("dark");
     document.body.classList.add("light");
-    topbar.style.backgroundImage = "url('/static/images/morning.gif')";
+    topbar.style.backgroundImage = "url('morning.gif')";
     themetoggle.textContent = "🌞";
   }
 });
@@ -332,3 +332,4 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
