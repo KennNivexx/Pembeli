@@ -3,7 +3,7 @@
 // =======================
 
 // URL backend di Railway
-const API_URL = 'https://flask-production-a120.up.railway.app';
+const API_URL = 'http://flask-rose-eight.vercel.app';
 
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
@@ -368,4 +368,5 @@ function animateCart() {
 // =======================
 // Init
 // =======================
+
 loadMenus();
