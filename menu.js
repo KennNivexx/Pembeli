@@ -76,46 +76,6 @@ catBtns.forEach((b) => {
 });
 
 // =======================
-// Load menus
-// =======================
-async function loadMenus() {
-  try {
-    const res = await fetch(`${API_URL}/api/menus`);
-    if (!res.ok) throw new Error("Gagal ambil menu");
-    menus = await res.json();
-    renderMenus();
-  } catch (err) {
-    console.error(err);
-    alert("Tidak bisa ambil menu dari server");
-  }
-}
-
-// Ambil data list sederhana
-async function getMenu() {
-  try {
-    const response = await fetch(`${API_URL}/api/menus`);
-    if (!response.ok) throw new Error("Gagal ambil data menu");
-
-    const data = await response.json();
-    const menuList = document.getElementById("menu-list");
-    if (menuList) {
-      menuList.innerHTML = "";
-      data.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = `${item.nama} - Rp${item.harga}`;
-        menuList.appendChild(li);
-      });
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Gagal connect ke backend");
-  }
-}
-
-// Panggil fungsi saat halaman dibuka
-document.addEventListener("DOMContentLoaded", getMenu);
-
-// =======================
 // Render menus
 // =======================
 function renderMenus() {
@@ -370,3 +330,4 @@ function animateCart() {
 // =======================
 
 loadMenus();
+
