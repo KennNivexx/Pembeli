@@ -1,7 +1,6 @@
 // =======================
 // Util
 // =======================
-const API_BASE = "https://flask-production-a120.up.railway.app";
 
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
@@ -13,18 +12,6 @@ let menus = [];
 let currentCategory = "all";
 
 
-try {
-  const res = await fetch(${API_BASE}/api/orders, { ... });
-  if (!res.ok) throw new Error("Gagal connect API");
-  const out = await res.json();
-
-  if (!out.ok) {
-    alert(out.msg || "Gagal membuat pesanan");
-    return;
-  }
-} catch (err) {
-  alert("Server error: " + err.message);
-}
 
 // =======================
 // Elements
@@ -90,7 +77,7 @@ catBtns.forEach((b) => {
 // Load menus
 // =======================
 async function loadMenus() {
-  const res = await fetch(`${API_BASE}/api/menus`);
+  const res = await fetch(`api/menus`);
   menus = await res.json();
   renderMenus();
 }
@@ -132,7 +119,7 @@ function renderMenus() {
           id: m.id,
           name: m.nama,
           price: m.harga,
-          img: m.gambar || "/static/images/fallback.png",
+          img: m.gambar || "fallback.png",
           qty: 1,
         });
       }
@@ -153,7 +140,7 @@ function renderCart() {
     row.className = "cart-row";
     row.innerHTML = `
       <img src="${it.img}" alt="${it.name}" 
-           onerror="this.src='/static/images/fallback.png'"/>
+           onerror="this.src='fallback.png'"/>
       <div>
         <div><strong>${it.name}</strong></div>
         <div>Rp ${rupiah(it.price)} / item</div>
@@ -254,7 +241,7 @@ confirmPayBtn.addEventListener("click", async () => {
     cart: cart.map((i) => ({ id: i.id, qty: i.qty })),
   };
 
-  const res = await fetch(`${API_BASE}/api/orders`, {
+  const res = await fetch(`/api/orders`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -348,6 +335,7 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
 
 
 
