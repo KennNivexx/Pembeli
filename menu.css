@@ -88,7 +88,7 @@ body {
   box-shadow: var(--shadow);
   transform: translateX(-260px);
   transition: transform 0.22s;
-  z-index: 40;
+  z-index: 20;
 }
 .sidebar.open {
   transform: translateX(0);
@@ -407,3 +407,4 @@ html {
 #cart-btn.shake {
   animation: cartShake 0.6s ease;
 }
+
