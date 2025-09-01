@@ -1,6 +1,9 @@
 // =======================
 // Util
 // =======================
+// Base URL API dari Railway
+const API_BASE = "https://flask-production-a120.up.railway.app";
+
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
 // =======================
@@ -70,14 +73,16 @@ catBtns.forEach((b) => {
     renderMenus();
   });
 });
+
 // =======================
 // Load menus
 // =======================
 async function loadMenus() {
-  const res = await fetch("/api/menus");
+  const res = await fetch(${API_BASE}/api/menus);
   menus = await res.json();
   renderMenus();
 }
+
 // =======================
 // Render menus
 // =======================
@@ -121,6 +126,7 @@ function renderMenus() {
         });
       }
       updateBadge();
+      animateCart();
     });
   });
 }
@@ -238,7 +244,7 @@ confirmPayBtn.addEventListener("click", async () => {
     cart: cart.map((i) => ({ id: i.id, qty: i.qty })),
   };
 
-  const res = await fetch("/api/orders", {
+  const res = await fetch(${API_BASE}/api/orders, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -253,7 +259,7 @@ confirmPayBtn.addEventListener("click", async () => {
   // Tampilkan struk
   const tgl = new Date().toLocaleString("id-ID");
   const itemsStr = cart
-    .map((i) => `• ${i.name} x${i.qty}  Rp ${rupiah(i.price * i.qty)}`)
+    .map((i) => • ${i.name} x${i.qty}  Rp ${rupiah(i.price * i.qty)})
     .join("\n");
 
   receiptContent.textContent = `JUALANKU
@@ -287,6 +293,7 @@ finishBtn.addEventListener("click", () => close(receiptModal));
     if (e.target === m) close(m);
   });
 });
+
 // Theme toggle + topbar
 const themetoggle = document.getElementById("theme-toggle");
 const topbar = document.getElementById("topbar");
@@ -311,6 +318,7 @@ themeToggle.addEventListener("click", () => {
     themetoggle.textContent = "🌞";
   }
 });
+
 function animateCart() {
   const cartBtn = document.getElementById("cart-btn");
   if (!cartBtn) return;
@@ -320,16 +328,7 @@ function animateCart() {
   cartBtn.classList.add("shake");
 }
 
-// contoh trigger tiap kali nambah item ke keranjang
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("add-to-cart")) {
-    animateCart();
-  }
-});
-
-// kalau kamu udah punya fungsi addToCart, panggil aja animateCart() di situ
 // =======================
 // Init
 // =======================
 loadMenus();
-
