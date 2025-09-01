@@ -2,7 +2,7 @@
 // Util
 // =======================
 // Base URL API dari Railway
-const API_BASE = "https://flask-production-a120.up.railway.app";
+const API_BASE = "flask-production-a120.up.railway.app";
 
 const rupiah = (n) => Number(n).toLocaleString("id-ID");
 
@@ -335,3 +335,4 @@ document.addEventListener("click", function (e) {
 // Init
 // =======================
 loadMenus();
+
