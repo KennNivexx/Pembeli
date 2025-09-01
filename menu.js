@@ -12,6 +12,20 @@ let cart = []; // {id, name, price, img, qty}
 let menus = [];
 let currentCategory = "all";
 
+
+try {
+  const res = await fetch(${API_BASE}/api/orders, { ... });
+  if (!res.ok) throw new Error("Gagal connect API");
+  const out = await res.json();
+
+  if (!out.ok) {
+    alert(out.msg || "Gagal membuat pesanan");
+    return;
+  }
+} catch (err) {
+  alert("Server error: " + err.message);
+}
+
 // =======================
 // Elements
 // =======================
@@ -329,22 +343,11 @@ document.addEventListener("click", function (e) {
   }
 });
 
-try {
-  const res = await fetch(${API_BASE}/api/orders, { ... });
-  if (!res.ok) throw new Error("Gagal connect API");
-  const out = await res.json();
-
-  if (!out.ok) {
-    alert(out.msg || "Gagal membuat pesanan");
-    return;
-  }
-} catch (err) {
-  alert("Server error: " + err.message);
-}
 // kalau kamu udah punya fungsi addToCart, panggil aja animateCart() di situ
 // =======================
 // Init
 // =======================
 loadMenus();
+
 
 
